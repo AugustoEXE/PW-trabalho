@@ -1,0 +1,31 @@
+{% extends "./inc/base.html" %}
+
+{% block title %}Cadastro de Ususarios
+{% endblock %}
+{% block content %}
+
+    <div class="container-xxl">
+
+	<div class="container my-2">
+        <h1>Cadastro de usuarios</h1>
+    </div>
+    
+        <form action="cadController" class="form" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome:</label>
+                <input type="text" name="name" class="form-control" id="name" aria-describedby="nome">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email:</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" name="password"class="form-control" id="password" aria-describedby="senha">
+            </div>
+            <button class="btn btn-primary">Cadastrar</button>
+        </form>
+</div>
+
+{% endblock %}
+
