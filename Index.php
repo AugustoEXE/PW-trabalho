@@ -1,4 +1,2 @@
 <?php
-require("./includes/loadTwig.php");
-
-echo $twig->render("index.html");
+header("location: localhost:8080/dashboard");

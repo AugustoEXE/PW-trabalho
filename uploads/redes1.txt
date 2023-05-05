@@ -1,0 +1,60 @@
+hospedeiros e sistemas finais:
+
+=> equipamentos ligados a rede == sistemas finais
+	-> computadores, celulares, workstation, smartTV, laptop...
+
+=> enlaçes de comunicação:
+	-> cabo, fibra otica, cabo coaxial, radio (wi-fi, rede movel)
+		*diferentes enlaçes tem taxa de tansferencia diferentes
+
+=> taxa de transmição:
+	-> velocidade, medida em bits por segundo 
+
+=> comutador de pacotes:
+	-> encaminha um pacote de comunicação do enlaçe de entrada para o enlaçe de saida 
+	-> switch encaminha para a mesma rede
+	-> roteador encaminha para a internet
+
+=> o que é pacote:
+	-> dados grander sao segmentados em menores e adiciona bytes de cabeçalho
+	-> qundo chegam no destino sao rearupados e remontados
+
+=> isp:
+	->  internet service provider
+
+=> protocolos:
+	-> aquilo que é executado pelos componentes de rede 
+	-> define o formato e a ordem das mensagens trocadas entre duas ou mais entidades comunicantes, bem como as açoes realizadas na transmissão
+	   e/ou o recebimento de uma mensagem ou outro evento.
+	
+=> TCP:/IP
+	-> protocolos mais importantes da internet
+	-> ip especifica o formato dos pacotes que serão enviados e recebidos, é o codigo do computador
+	-> TCP é a porta, 80, 440, 
+	
+=> sistemas finais (ou hosts):
+	-> pq hospedam (executam) programas de aplicações 
+	-> browser
+
+=> Sistemas finais (cliente) e Servidores:
+	-> finais são o que usamos
+	-> servidores nos fornecem dados 
+	
+
+	-> aplicação -> https 
+	-> transporte -> TCP
+	-> rede -> IP 
+	-> enlace -> wifi, 4G, ethernet
+	-> fisica -> 
+
+
+
+=> aplicaçoes de rede:
+	-> classicas de texto tipo email
+	-> serviços de streaming 
+	-> aplicativos que buscam algo na rede
+
+=> tranferencico
+
+
+

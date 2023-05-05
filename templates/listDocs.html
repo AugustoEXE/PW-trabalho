@@ -1,0 +1,35 @@
+{% extends "./inc/base.html" %}
+
+{% block title %}Lista de arquivos
+{% endblock %}
+{% block content %}
+
+	
+
+			<div class="d-flex justify-content-center">
+                <h1>Lista de arquivos</h1>
+            </div>
+		<div class="container">
+			<table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in files %}
+                        <tr>
+                            <td>{{file.id}}</td>
+                            <td>{{file.name}}</td>
+                            <td>compartilhar | deletar</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+		</div>
+	
+
+{% endblock %}
+

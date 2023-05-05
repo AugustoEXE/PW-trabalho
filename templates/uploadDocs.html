@@ -1,0 +1,21 @@
+{% extends "./inc/base.html" %}
+
+{% block title %}Upload de arquivos
+{% endblock %}
+{% block content %}
+
+	
+
+			<div class="d-flex justify-content-center">
+				<h1>Upload de arquivos</h1>
+			</div>
+
+		<form action="uploadController" class="form" method="post" enctype="multipart/form-data">
+			<div class="mb-3">
+				<label for="formFile" class="form-label">Envie o arquivo aqui:</label>
+				<input class="form-control" name="file" accept=".pdf, .doc, .docx, .odt, .txt" type="file" id="formFile" >
+			</div>
+			<button class="btn btn-primary">Enviar</button>
+		</form>
+	
+{% endblock %}
