@@ -1,4 +1,5 @@
 <?php
+
 use Ramsey\Uuid\Converter\Number\DegradedNumberConverter;
 
 class Model
@@ -19,7 +20,6 @@ class Model
         $tbl .= 's';
         $this->table = $tbl;
         $this->conex = new PDO("{$this->driver}:host={$this->host}; port={$this->port}; dbname={$this->dbname}", $this->user, $this->password);
-
     }
 
     public function getAll($where = false, $whereGlue = 'AND')
@@ -28,17 +28,17 @@ class Model
             $where_sql = $this->whereFields($where, $whereGlue);
             $sql = $this->conex->prepare("SELECT * FROM {$this->table} WHERE {$where_sql}");
             $sql->execute($where);
-           
-        }else{
-        $sql = $this->conex->query("SELECT * FROM {$this->table}");
+            return $sql->fetch(PDO::FETCH_OBJ);
+        } else {
+            $sql = $this->conex->query("SELECT * FROM {$this->table}");
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
         }
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getById($id)
     {
         $sql = $this->conex->prepare("SELECT * FROM {$this->table} WHERE id=?");
         $sql->execute([$id]);
-        return $sql->fetch(PDO::FETCH_ASSOC);
+        return $sql->fetch(PDO::FETCH_OBJ);
     }
     public function create($data)
     {
@@ -76,7 +76,6 @@ class Model
     {
         foreach (array_keys($data) as $field) {
             $sqlFields[] = "{$field} = :{$field}";
-
         }
         return $sqlFields;
     }
@@ -93,5 +92,4 @@ class Model
         $fields = $this->mapFields($data);
         return implode($comp, $fields);
     }
-
 }

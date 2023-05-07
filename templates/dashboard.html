@@ -2,12 +2,13 @@
 
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-    
-{% if session == false %}
-{% endif %}
 
 <div class="d-flex justify-content-center">
     <h1>Dashboard</h1>
+    
+    {% if session == false %}
+    
+    {% endif %}
 </div>
 
 {% endblock %}

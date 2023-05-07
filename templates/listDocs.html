@@ -7,9 +7,23 @@
 	
 
 			<div class="d-flex justify-content-center">
+                
                 <h1>Lista de arquivos</h1>
+
             </div>
-		<div class="container">
+            <div class="container">
+            <div class="">
+                <form class="d-flex" role="search" >
+                    <select class="form-select w-25"  id="searchDocMethod" aria-label="Default select example">
+                        <option selected value="0">Filtrar por...</option>
+                        <option value="1">Dono</option>
+                        <option value="2">Data de Upload</option>
+                        <option value="3">ID</option>
+                      </select>
+                    <input class="form-control me-2" id="searchBar" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                  </form>
+            </div>
 			<table class="table table-hover">
                 <thead>
                     <tr>

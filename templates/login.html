@@ -1,25 +1,37 @@
 {% extends "./inc/base.html" %}
 
-    {% block title %}Lista de arquivos
-    {% endblock %}
-    {% block content %}
-   
-        <div class="d-flex justify-content-center">
-          <h1 class="">Login</h1>
-        </div>
-            <form action="/loginController" method="POST">
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email:</label>
-                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Senha</label>
-                  <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <button type="submit" class="btn btn-primary">Entrar</button>
-              </form>
-        
-    
-    {% endblock %}
-    
-    
+{% block title %}Login
+{% endblock %}
+{% block content %}
+
+{% if error == 401 %}
+<div class="alert alert-danger mt-5" role="alert">
+  Acesso não autorizado. Faça Login para acessar o conteúdo
+</div>
+{% elseif error == 400 %}
+<div class="alert alert-danger mt-5" role="alert">
+  Acesso não autorizado. Senha incorreta
+</div>
+{% elseif error == 402 %}
+<div class="alert alert-danger mt-5" role="alert">
+  Acesso não autorizado. Usuario não encontrado
+</div>
+{% endif %}
+
+<div class="d-flex justify-content-center">
+  <h1 class="">Login</h1>
+</div>
+<form action="/loginController" method="POST">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email:</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Senha</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+
+
+{% endblock %}
