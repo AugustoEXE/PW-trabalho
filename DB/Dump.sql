@@ -108,6 +108,8 @@ ALTER TABLE `users_docs`
 --
 -- Restrições para despejos de tabelas
 --
+ALTER TABLE `documents` ADD `include_date` DATE NULL AFTER `name`;
+ALTER TABLE `documents` ADD `owner` VARCHAR(255) NOT NULL AFTER `name`;
 
 --
 -- Limitadores para a tabela `users_docs`

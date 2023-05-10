@@ -28,7 +28,7 @@ class Model
             $where_sql = $this->whereFields($where, $whereGlue);
             $sql = $this->conex->prepare("SELECT * FROM {$this->table} WHERE {$where_sql}");
             $sql->execute($where);
-            return $sql->fetch(PDO::FETCH_OBJ);
+            return $sql->fetchAll(PDO::FETCH_ASSOC);
         } else {
             $sql = $this->conex->query("SELECT * FROM {$this->table}");
             return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ class Model
     {
         $sql = $this->conex->prepare("SELECT * FROM {$this->table} WHERE id=?");
         $sql->execute([$id]);
-        return $sql->fetch(PDO::FETCH_OBJ);
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
     public function create($data)
     {

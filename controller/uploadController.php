@@ -1,11 +1,14 @@
 <?php
 require(PROJECT_PATH . 'models/Model.php');
 require(PROJECT_PATH . 'models/Document.php');
+require(PROJECT_PATH . 'models/User.php');
 require(PROJECT_PATH . 'models/Users_Doc.php');
 require(PROJECT_PATH . 'functions/sanitizeFilename.php');
 require(PROJECT_PATH . 'functions/verifyFilename.php');
 require(PROJECT_PATH . "includes/verifyAccess.php");
 
+$timezone = new DateTimeZone('America/Sao_Paulo');
+$now = new DateTime('now', $timezone);
 
 
 
@@ -19,14 +22,17 @@ if (!$_FILES['file']['error']) {
 
 
 $doc = new Document();
+$user = new User();
 
+$owner = $user->getById(intval($_SESSION['user']));
 
 $error = $doc->create([
     'name' => $fileName,
+    'owner' => $owner[0]['name'],
+    'include_date' => $now->format('Y-m-d')
 ]);
 
 $lastDoc = $doc->getAll(["name" => $fileName]);
-
 $access = new Users_Doc();
 
 // echo "<pre>";
@@ -39,7 +45,7 @@ $access = new Users_Doc();
 
 $error = $access->create([
     'users_id' => $_SESSION['user'],
-    'documents_id' => $lastDoc->id,
+    'documents_id' => $lastDoc[0]['id'],
     'permissions' => 'edit'
 ]);
 
