@@ -2,15 +2,23 @@
 require(PROJECT_PATH . "includes/loadTwig.php");
 require(PROJECT_PATH . 'models/Model.php');
 require(PROJECT_PATH . 'models/Document.php');
+require(PROJECT_PATH . 'models/User.php');
 require(PROJECT_PATH . "includes/verifyAccess.php");
 
 
-$file = new Document;
+$file = new Document();
+$users = new User();
+
+$user = $users->getById($_SESSION['user']);
+
 
 $files = $file->getWithUser($_SESSION['user']);
 
+$owner = $user[0]['name'];
+
+
 // echo '<pre>';
-// var_dump($files);
+// var_dump($owner);
 // die;
 
 if (isset($_POST['search'])) {
@@ -35,5 +43,7 @@ if (isset($_POST['search'])) {
 echo $twig->render("listDocs.html", [
     "files" => $files,
     'isFiltered' => $isFiltered ?? false,
-    "session" => $_SESSION['user'] ?? false
+    "session" => $_SESSION['user'] ?? false,
+    'error' => $_GET['id'],
+    'owner' => $owner
 ]);

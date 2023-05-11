@@ -83,6 +83,7 @@ class Model
         $del = $this->conex->prepare($sql);
         $del->execute($data);
     }
+    
     private function mapFields($data)
     {
         foreach (array_keys($data) as $field) {

@@ -24,7 +24,7 @@ $erro = $usr->create([
 
 
 if (!$erro[1]) {
-    header("location: /listUsers");
+    header("location: /login");
     die;
 } else {
     header('location: /cadUser');
