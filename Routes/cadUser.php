@@ -1,7 +1,6 @@
 <?php
 require(PROJECT_PATH . "includes/loadTwig.php");
-require(PROJECT_PATH . "includes/verifyAccess.php");
-
+session_start();
 
 echo $twig->render("cadUser.html", [
     'session' => $_SESSION['user'] ?? false

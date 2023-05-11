@@ -110,6 +110,7 @@ ALTER TABLE `users_docs`
 --
 ALTER TABLE `documents` ADD `include_date` DATE NULL AFTER `name`;
 ALTER TABLE `documents` ADD `owner` VARCHAR(255) NOT NULL AFTER `name`;
+ALTER TABLE `documents` ADD `active` BOOLEAN NOT NULL DEFAULT TRUE AFTER `include_date`;
 
 --
 -- Limitadores para a tabela `users_docs`

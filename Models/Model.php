@@ -71,7 +71,18 @@ class Model
         // var_dump($error);die;
 
     }
+    public function delete($id)
+    {
+        $sql = "UPDATE {$this->table}";
+        $sql .= ' SET active = 0';
 
+        $sql .= ' WHERE id = :id';
+
+        $data['id'] = $id;
+
+        $del = $this->conex->prepare($sql);
+        $del->execute($data);
+    }
     private function mapFields($data)
     {
         foreach (array_keys($data) as $field) {

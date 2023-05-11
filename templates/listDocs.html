@@ -40,6 +40,7 @@
                 <th>Nome</th>
                 <th>Dono do arquivo</th>
                 <th>Data de Upload</th>
+                <th>Permissão para:</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -50,7 +51,15 @@
                 <td>{{file.name}}</td>
                 <td>{{file.owner}}</td>
                 <td>{{ file.include_date | date("d/m/Y") }}</td>
-                <td>compartilhar | deletar</td>
+                {% if file.permissions == 'edit' %}
+                <td>Editar e excluir</td>
+                <td><a href="/shareDoc/{{file.id}}"><button class="btn btn-outline-primary"><i class="bi bi-share"></i> Compartilhar</button></a> | <a href="/delDoc/{{file.id}}"><button class="btn btn-outline-danger"><i class="bi bi-trash"></i> Deletar</button></a></td>
+
+                    {% else %}
+                    <td>Ver</td>
+                <td></td>
+
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>

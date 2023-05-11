@@ -7,7 +7,11 @@ require(PROJECT_PATH . "includes/verifyAccess.php");
 
 $file = new Document;
 
-$files = $file->getAll();
+$files = $file->getWithUser($_SESSION['user']);
+
+// echo '<pre>';
+// var_dump($files);
+// die;
 
 if (isset($_POST['search'])) {
     $search = $_POST['search'] ?? null;
