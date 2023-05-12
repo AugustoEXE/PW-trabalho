@@ -1,14 +1,30 @@
 {% extends "./inc/base.html" %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Dashboard
+{% endblock %}
 {% block content %}
 
-<div class="d-flex justify-content-center">
-    <h1>Dashboard</h1>
-    
-    {% if session == false %}
-    
-    {% endif %}
-</div>
-
+	<div class="d-flex justify-content-center">
+		<h1>Dashboard</h1>
+	</div>
+	<div class="mb-3">
+		<h2>O que você deseja fazer?</h2>
+	</div>
+	<div>
+        
+		<ul class="list-group">
+			<a href="" class="rounded">
+				<li class="list-group-item">An item </li>
+			</a>
+			<a href=""class="rounded">
+				<li class="list-group-item">An item</li>
+			</a>
+			<a href=""class="rounded">
+				<li class="list-group-item">An item</li>
+			</a>
+			<a href=""class="rounded">
+				<li class="list-group-item">An item</li>
+			</a>
+		</ul>
+	</div>
 {% endblock %}

@@ -21,17 +21,20 @@ $owner = $user[0]['name'];
 // var_dump($owner);
 // die;
 
+
 if (isset($_POST['search'])) {
     $search = $_POST['search'] ?? null;
     $searchMethod = $_POST['searchMethod'] ?? null;
     $filter = $_POST['filter'] ?? 1;
+
     $isFiltered = true;
+
     if ($searchMethod == 1) {
-        $files = $file->getAll(['owner' => $search]);
+        $files = $file->getWithUser($_SESSION['user'], "AND owner = '{$search}'");
     } elseif ($searchMethod == 2) {
-        $files = $file->getAll(['include_date' => $search]);
+        $files = $file->getWithUser($_SESSION['user'], "AND include_date = '{$search}'");
     } elseif ($searchMethod == 3) {
-        $files = $file->getById(intval($search));
+        $files = $file->getWithUser($_SESSION['user'], "AND documents.id = {$search}");
     }
 
     if ($filter == 0) {
@@ -45,5 +48,7 @@ echo $twig->render("listDocs.html", [
     'isFiltered' => $isFiltered ?? false,
     "session" => $_SESSION['user'] ?? false,
     'error' => $_GET['id'],
-    'owner' => $owner
+    'owner' => $owner,
+    'username' => $_SESSION['username'] ?? false
+
 ]);
