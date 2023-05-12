@@ -18,6 +18,7 @@ if ($user) {
 
     session_start();
     $_SESSION['user'] = $user->id;
+    $_SESSION['username'] = $user->name;
     header('location: /dashboard');
 } else {
     header('location: /login/402'); //mandar erro

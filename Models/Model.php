@@ -83,7 +83,8 @@ class Model
         $del = $this->conex->prepare($sql);
         $del->execute($data);
     }
-    private function mapFields($data)
+    
+    protected function mapFields($data)
     {
         foreach (array_keys($data) as $field) {
             $sqlFields[] = "{$field} = :{$field}";
@@ -91,13 +92,13 @@ class Model
         return $sqlFields;
     }
 
-    private function sqlFields($data)
+    protected function sqlFields($data)
     {
         $sqlFields = $this->mapFields($data);
         return implode(',', $sqlFields);
     }
 
-    private function whereFields($data, $comp = 'AND')
+    protected function whereFields($data, $comp = 'AND')
     {
         $comp = $comp == 'OR' ? ' OR ' : ' AND ';
         $fields = $this->mapFields($data);

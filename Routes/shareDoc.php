@@ -15,5 +15,7 @@ $users = $user->getAll();
 echo $twig->render("shareDoc.html", [
     'session' => $_SESSION['user'] ?? false,
     'users' => $users,
-    'docId' => $_GET['id']
+    'docId' => $_GET['id'],
+    'username' => $_SESSION['username'] ?? false
+
 ]);
