@@ -5,48 +5,47 @@
 {% block content %}
 
 
+	<div class="d-flex justify-content-center">
 
-<div class="d-flex justify-content-center">
+		<h1>Lista de arquivos</h1>
 
-    <h1>Lista de arquivos</h1>
+	</div>
+	<div class="container">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th><input class="form-check-input" type="checkbox" name="userId" id="flexRadioDefault" disabled></th>
+					<th>#</th>
+					<th>Nome</th>
+					<th>Email</th>
+					<th>Permissão</th>
+					<th>Compartilhar</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
 
-</div>
-<div class="container">
-    <form action="/shareController" method="post">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th><input class="form-check-input" type="radio" name="userId" id="flexRadioDefault" disabled></th>
-                <th>#</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Permissão</th>
-            </tr>
-        </thead>
-        <tbody>
-                {% for user in users %}
-
-                <tr>
-                    <td><input class="form-check-input" type="radio" value='{{user.id}}' name="userId"
-                            id="flexRadioDefault"></td>
-                    <td>{{user.id}}</td>
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
-                    <td> <select class="form-select w-50" name="permission" 
-                            aria-label="Default select example">
-                            <option selected>Permissão para...</option>
-                            <option value="1">Editar/Excluir</option>
-                            <option value="2">Ver</option>
-                        </select>
-                    </td>
-                </tr>
-                {% endfor %}
-        </tbody>
-    </table>
-    <input type="hidden" name="docId" value="{{docId}}">
-    <button class="btn btn-primary">Compartilhar</button>
-    </form>
-</div>
-
-
-{% endblock %}
+					<form action="/shareController" method="post">
+						<tr>
+							<td><input class="form-check-input" type="checkbox" value='{{user.id}}' name="userId" id="flexRadioDefault"></td>
+							<td>{{user.id}}</td>
+							<td>{{user.name}}</td>
+							<td>{{user.email}}</td>
+							<td>
+								<select class="form-select w-50" name="permission" aria-label="Default select example">
+									<option selected value="-1">Permissão para...</option>
+									<option value="1">Editar/Excluir</option>
+									<option value="2">Ver</option>
+								</select>
+							</td>
+                            <td>
+                                <input type="hidden" name="docId" value="{{docId}}">
+                                <button class="btn btn-primary">Compartilhar</button>
+                            </td>
+                        </form>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</tbody>
+		</table>
+</div>{% endblock %}

@@ -4,5 +4,7 @@ session_start();
 
 echo $twig->render("login.html", [
     'session' => $_SESSION['user'] ?? false,
-    'error' => $_GET['id'] ?? false
+    'error' => $_GET['id'] ?? false,
+    'username' => $_SESSION['username'] ?? false
+
 ]);

@@ -5,66 +5,108 @@
 {% block content %}
 
 
+	<div class="d-flex justify-content-center">
 
-<div class="d-flex justify-content-center">
+		<h1>Lista de arquivos</h1>
 
-    <h1>Lista de arquivos</h1>
+	</div>
+	<div>
+		{% if error == 400 %}
+			<div class="alert alert-danger mt-5" role="alert">
+				Selecione uma permissão para compartilhar o arquivo
+			</div>
+		{% endif %}
+	</div>
+	<div class="container">
+		<div class="">
+			<form class="d-flex" role="search" method="post" action="/listDocs">
+				<select class="form-select w-25" name="searchMethod" id="searchDocMethod" aria-label="Default select example">
+					<option value="9">Filtrar por...</option>
+					<option value="1">Dono</option>
+					<option value="2">Data de Upload</option>
+					<option value="3">ID</option>
+				</select>
+				<input class="form-control me-2" id="searchBar" name='search' type="text" placeholder="Search" aria-label="Search" disabled>
 
-</div>
-<div class="container">
-    <div class="">
-        <form class="d-flex" role="search" method="post" action="/listDocs">
-            <select class="form-select w-25" name="searchMethod" id="searchDocMethod"
-                aria-label="Default select example">
-                <option value="9">Filtrar por...</option>
-                <option value="1">Dono</option>
-                <option value="2">Data de Upload</option>
-                <option value="3">ID</option>
-            </select>
-            <input class="form-control me-2" id="searchBar" name='search' type="text" placeholder="Search"
-                aria-label="Search" disabled>
+				{% if isFiltered %}
+					<input type="hidden" name="filter" value="0">
+					<button class="btn btn-outline-danger fs-8" type="submit"> <i class="bi bi-x-circle"></i> Limpar busca</button>
+				{% else %}
+					<button class="btn btn-outline-success" id="submmitSearch" type="submit" disabled>Buscar</button>
+				{% endif %}
 
-            {% if isFiltered %}
-            <input type="hidden" name="filter" value="0">
-            <button class="btn btn-outline-danger"  type="submit">Limpar busca</button>
-            {% else %}
-            <button class="btn btn-outline-success" id="submmitSearch"type="submit" disabled>Buscar</button>
-            {% endif %}
+			</form>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nome</th>
+					<th>Dono do arquivo</th>
+					<th>Data de Upload</th>
+					<th>Permissão para:</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for file in files %}
+					<tr>
+						<td>{{file.id}}</td>
+						<td>{{file.name}}</td>
+						<td>{{file.owner}}</td>
+						<td>{{ file.include_date | date("d/m/Y") }}</td>
+						{% if file.permissions == 'edit' %}
+							<td>Editar e excluir</td>
+						{% else %}
+							<td>Ver</td>
+						{% endif %}
 
-        </form>
-    </div>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>Dono do arquivo</th>
-                <th>Data de Upload</th>
-                <th>Permissão para:</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for file in files %}
-            <tr>
-                <td>{{file.id}}</td>
-                <td>{{file.name}}</td>
-                <td>{{file.owner}}</td>
-                <td>{{ file.include_date | date("d/m/Y") }}</td>
-                {% if file.permissions == 'edit' %}
-                <td>Editar e excluir</td>
-                <td><a href="/shareDoc/{{file.id}}"><button class="btn btn-outline-primary"><i class="bi bi-share"></i> Compartilhar</button></a> | <a href="/delDoc/{{file.id}}"><button class="btn btn-outline-danger"><i class="bi bi-trash"></i> Deletar</button></a></td>
+						{% if owner == file.owner %}
 
-                    {% else %}
-                    <td>Ver</td>
-                <td></td>
+							<td>
+								<a href="/downloadController/{{file.id}}" class="link-underline-dark">
+									<button class="btn btn-outline-primary">
+										<i class="bi bi-download"></i>
+										Download</button>
+								</a>
+								 |
+								<a href="/shareDoc/{{file.id}}" class="link-underline-dark">
+									<button class="btn btn-outline-success">
+										<i class="bi bi-share"></i>
+										Compartilhar</button>
+								</a>
+								|
+								<a href="/delDoc/{{file.id}}" class="link-underline-dark">
+									<button class="btn btn-outline-danger">
+										<i class="bi bi-trash"></i>
+										Deletar</button>
+								</a>
+							</td>
+                            {% else %}
+                                
+                            
+							<td>
+								<a href="/shareDoc/{{file.id}}" class="link-underline-dark">
+									<button class="btn btn-outline-primary">
+										<i class="bi bi-download"></i>
+										Download</button>
+								</a>
+								|
+								<a href="/delDoc/{{file.id}}" class="link-underline-dark">
+									<button class="btn btn-outline-danger">
+										<i class="bi bi-trash"></i>
+										Deletar</button>
+								</a>
+							</td>
 
-                {% endif %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+							<td></td>
+
+						{% endif %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
 
 {% endblock %}
