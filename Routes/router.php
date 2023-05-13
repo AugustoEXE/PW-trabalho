@@ -2,9 +2,9 @@
 $pagina = $_GET['pagina'] ?? false;
 
 //IF
-define('PROJECT_PATH', "C:/xampp/htdocs/3info/PW-trabalho/");
+// define('PROJECT_PATH', "C:/xampp/htdocs/3info/PW-trabalho/");
 //Casa
-// define('PROJECT_PATH', "C:/xampp/htdocs/pw/PW-trabalho/");
+define('PROJECT_PATH', "C:/xampp/htdocs/pw/PW-trabalho/");
 
 $include =  filter_var("{$pagina}.php", FILTER_SANITIZE_STRING);
 
